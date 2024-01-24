@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No es top!</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container mt-5" id="instructions">
+        <div class="text-center mb-5">
+            <h1 style="font-size:100px;">No es top!</h1>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  ¿Cómo se juega?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    No es top! se desarrolla en una serie de rondas.
+                    Al inicio de cada una, saquen una carta de abajo de la pila de categoría y ubíquenla al lado del mazo con la categoría a la vista.
+                    No miren el top 10 que está en su dorso.
+                    En tu turno vos podés pasar o responder:
+                    • Si pasás, no podés volver a participar en esa ronda.
+                    • Para responder, nombrá un ítem que creas que está en el top 10 de las respuestas en el dorso de la carta. Una vez que respondés, el resto de los jugadores tiene la posibilidad de desafiar tu respuesta (si cree que tu respuesta no está en la carta).
+                    Ejemplo: en la categoría "Fruta más consumida" podés decir
+                    "manzana", "limón" o la fruta que creas que está en el top 10.
+                    Si pasaste o si ningún jugador desafía tu respuesta, le toca al jugador de tu izquierda dar una respuesta (que tiene que ser diferente a las ya dadas) o pasar.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Desafiar una respuesta
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Cualquier jugador que no haya pasado puede desafiar la respuesta de otro diciendo: "No es top!". Si varios jugadores desafían la misma respuesta, el primero que dijo "No es top!" es el desafiante.
+El desafiante agarra la carta y mira el top 10 en el dorso. <br>
+                  <strong>SOLAMENTE QUIEN DESAFIA MIRA LA CARTA!</strong> <br>
+                  • Si la respuesta desafiada está en la carta, el desafiante pierde una vida y tiene que girar su carta de personaje para indicar que tiene una vida menos.
+Luego coloca la carta en el centro de la mesa con la categoría hacia arriba así ningún otro jugador ve las respuestas. El desafiante no puede volver a participar de esa ronda. El juego continúa en sentido horario con el jugador que está a la izquierda del desafiado respondiendo o pasando.
+• Si la respuesta desafiada no está en la carta, el desafiado es quien pierde una vida y gira su carta. En este caso, se termina la ronda y el desafiante agarra la carta de categoría y la coloca delante suyo.
+Una ronda también termina cuando todos los jugadores excepto uno hayan pasado. En este caso, el jugador que no haya pasado es el que se queda con la carta y la coloca delante suyo.
+Para comenzar una nueva ronda, saquen una carta nueva del fondo del mazo y ubíquenla en el centro de la mesa con la categoría a la vista. El jugador inicial ahora es quien esté a la izquierda del ganador de la carta de la ronda anterior.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Quedarse afuera
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Si perdés tu última vida, da vuelta tu carta. Quedaste afuera del juego y no podés responder ni desafiar respuestas.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Victoria
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    El ganador es el primer jugador en recolectar cuatro cartas de categoría (tres para una partida más rápida) o el único jugador que no se haya quedado afuera.
+                  </div>
+                </div>
+              </div>
+          </div>
+        <div class="text-center">
+          <button class="btn btn-danger" onclick="playGame()" style="margin-top:100px;font-size:5em">JUGAR</button>
+        </div>
+        
+        </div>
+    <div class="container d-none" id="game-content">
+        <button class="btn btn-info" onclick="showInstructions()" style="position: fixed;top:0;left:0;font-size:1.5em">Ver instrucciones</button>
+        <div class="text-center mb-5">
+            <h1 style="font-size:100px;">No es top!</h1>
+        </div>
+        <div class="row" style="margin-bottom:3em">
+            <div class="col d-flex justify-content-around">
+                <img src="https://i.ibb.co/RBbNSRf/Repartir.png" style="width:400px" alt="images" id="deck"
+                    data-bs-target="#exampleModalToggle" data-bs-toggle="modal"  onclick="drawCard()">
+            </div>
+            <div class="col d-flex justify-content-around">
+                <img src="https://i.ibb.co/6bb41Cn/images.jpg" style="width:400px" alt="images">
+            </div>
+        </div>
+        <div class="row mb-5 d-flex justify-content-around">
+            <div class="col">
+                <div class="card" style="width: 10rem;">
+                    <h5 class="card-title">Player 1</h5>
+                    <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                    <div class="card-body text-center">
+                        <label for="player1Points">Puntos:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player1Points" type="number" id="playerPoints1" class="card-text text-center mb-2" value="0"></input>
+                        <label for="player1Lives">Vidas:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player1Lives"  type="number"id="playerLives1" class="card-text text-center mb-2" value="4"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 10rem;">
+                    <h5 class="card-title">Player 2</h5>
+                    <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                    <div class="card-body text-center">
+                        <label for="player2Points">Puntos:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player2Points" type="number" id="playerPoints2" class="card-text text-center mb-2" value="0"></input>
+                        <label for="player2Lives">Vidas:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player2Lives"  type="number"id="playerLives2" class="card-text text-center mb-2" value="4"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 10rem;">
+                    <h5 class="card-title">Player 3</h5>
+                    <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                    <div class="card-body">
+                        <label for="player3Points">Puntos:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player3Points" type="number" id="playerPoints3" class="card-text text-center mb-2" value="0"></input>
+                        <label for="player3Lives">Vidas:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player3Lives"  type="number"id="playerLives3" class="card-text text-center mb-2" value="4"></input>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 10rem;">
+                    <h5 class="card-title">Player 4</h5>
+                    <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                    <div class="card-body text-center">
+                        <label for="player4Points">Puntos:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player4Points" id="playerPoints4" class="card-text text-center mb-2" value="0"></input>
+                        <label for="player4Lives">Vidas:</label>
+                        <input disabled style="border:none;font-weight:700;max-width:30px;" name="player4Lives" id="playerLives4" class="card-text text-center mb-2" value="4"></input>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- BEGINING MODALS -->
+        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h1 class="modal-title" style="font-size: 30px;" id="exampleModalToggleLabel"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center" id="explanation">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-around">
+                        <button class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">NO
+                            ES TOP!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:350px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Respuestas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="answers">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-around">
+                        <a role="button" style="font-size:70px"><i data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" class="fa-solid fa-thumbs-up text-success"></i></a>
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Volver</button>
+                        <a role="button" style="font-size:70px"><i data-bs-target="#exampleModalToggle4" data-bs-toggle="modal" class="fa-solid fa-thumbs-down text-danger"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:350px">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <div></div>
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Ganador</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card winner" data-player="1" onclick="addPoint(1)">
+                                <h5 class="card-title">Player 1</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card winner"  data-player="2" onclick="addPoint(2)">
+                                <h5 class="card-title">Player 2</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="card winner"  data-player="3" onclick="addPoint(3)">
+                                <h5 class="card-title">Player 3</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card winner"  data-player="4" onclick="addPoint(4)">
+                                <h5 class="card-title">Player 4</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                    <button id="winnerBackToCard" class="btn btn-primary" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Seleccionar perdedor</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:350px">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between">
+                    <div></div>
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Perdedor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card loser" data-player="1" onclick="removeLife(1)">
+                                <h5 class="card-title">Player 1</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card loser" data-player="2" onclick="removeLife(2)">
+                                <h5 class="card-title">Player 2</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <div class="card loser" data-player="3" onclick="removeLife(3)">
+                                <h5 class="card-title">Player 3</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card loser" data-player="4" onclick="removeLife(4)">
+                                <h5 class="card-title">Player 4</h5>
+                                <img src="https://i.ibb.co/WHL296k/6596121.png" class="card-img-top" alt="6596121">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                    <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Volver
+                        a la tarjeta</button>
+                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Finalizar ronda</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END MODALS -->
+    </div>
+
+
+
+    <script src="main.js" type="text/javascript"></script>
+    <script src="https://kit.fontawesome.com/4ee38ade4b.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+</body>
+
+</html>
